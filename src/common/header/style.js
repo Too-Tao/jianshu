@@ -26,22 +26,59 @@ export const Nav = styled.div `
   box-sizing: border-box;
   /* background: green; */
 `
+export const SearchWrapper = styled.div `
+  position: relative;
+  float: left;
+  .slide-enter {
+    width: 160px;
+    transition: all .4s ease-out;
+  }
+  .slide-enter-active {
+    width: 240px;
+  }
+  .slide-exit {
+    transition: all .4s ease-out;
+  }
+  .slide-exit-active {
+    width: 160px;
+  }
+  .iconfont {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    &.focused {
+      background: #777;
+      color: #fff;
+    }
+    
+  }
+`
+
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
 }) `
   width: 160px;
   height: 38px;
-  padding: 0 20px;
+  padding: 0 30px 0 20px;
   margin-top: 9px;
   margin-left: 20px;
   box-sizing: border-box;
   border: none;
   outline:none;
   border-radius: 19px;
-  background: #eeeeee;
+  background: #DCDCDC;
+  color: #777;
   font-size: 14px;
   &::placeholder {
     color: #999;
+  }
+  &.focused {
+    width: 200px;
+    
   }
 `
 
