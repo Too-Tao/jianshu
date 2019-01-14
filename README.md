@@ -1,3 +1,5 @@
-# 使用的工具
+# 使用的架包
 - styled-components（css-in-js）
 - react-transition-group(实现动画效果)
+- immutable
+- redux-immutable
