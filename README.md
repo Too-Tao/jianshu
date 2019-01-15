@@ -3,3 +3,4 @@
 - react-transition-group(实现动画效果)
 - immutable
 - redux-immutable
+- redux-thunk
