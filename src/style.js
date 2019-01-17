@@ -56,12 +56,12 @@ url('./statics/iconfont/iconfont.ttf?t=1547428898135') format('truetype'), /* ch
 url('./statics/iconfont/iconfont.svg?t=1547428898135#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-.iconfont {
-font-family: "iconfont" !important;
-font-size: 16px;
-font-style: normal;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 `

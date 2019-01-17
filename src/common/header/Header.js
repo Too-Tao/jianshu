@@ -40,8 +40,8 @@ class Header extends Component {
         >
                 <SearchInfoTitle>
                   热门搜索
-                  <SearchInfoSwitch onClick={()=> handleChangePage(page, totalPage)}>
-                    换一批
+                  <SearchInfoSwitch onClick={()=> handleChangePage(page, totalPage, this.spinIcon)}>
+                  <i ref={(icon) => {this.spinIcon = icon}} className="iconfont spin">&#xe851;</i>换一批
                   </SearchInfoSwitch>
                 </SearchInfoTitle>
                 <SearchInfoList>
@@ -56,7 +56,7 @@ class Header extends Component {
     }
   }
   render(){
-    const { focused, handleInputFocused, handleInputBlur } = this.props
+    const { focused, handleInputFocused, handleInputBlur, list } = this.props
     return (
       <HeaderWrapper>
           <Logo/>
@@ -71,12 +71,12 @@ class Header extends Component {
               >
               <NavSearch 
                 className={focused ? 'focused' : ''} 
-                onFocus={handleInputFocused}
+                onFocus={() => handleInputFocused(list)}
                 onBlur={handleInputBlur}
               >
               </NavSearch>
               </CSSTransition>
-              <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe6e4;</span>
+              <span className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe6e4;</span>
               {this.getListArea()}
             </SearchWrapper>
             
@@ -112,8 +112,9 @@ const mapStateToProps = (state) => {
 
 const mapDispathToProps = (dispatch) => {
   return {
-    handleInputFocused () {
-      dispatch(actionCreators.getList())
+    handleInputFocused (list) {
+      
+      (list.size === 0) && dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
     },
 
@@ -129,7 +130,15 @@ const mapDispathToProps = (dispatch) => {
       dispatch(actionCreators.mouseLeave())
     },
 
-    handleChangePage(page, totalPage) {
+    handleChangePage(page, totalPage, spin) {
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '')
+      if(originAngle) {
+        originAngle = parseInt(originAngle, 10)
+      } else {
+        originAngle = 0
+      }
+      spin.style.transform = 'rotate(' + (originAngle + 360 ) + 'deg)'
+      // console.log(spin)
       if(page < totalPage) {
         dispatch(actionCreators.changePage(page + 1))
       } else {
